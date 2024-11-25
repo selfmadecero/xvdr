@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { usePortfolio } from '../lib/hooks/usePortfolio';
+import { usePortfolio, Portfolio } from '../lib/hooks/usePortfolio';
 import EmailGenerator from './EmailGenerator';
 
 interface EmailModalState {
   isOpen: boolean;
-  company?: any;
+  company?: Portfolio;
   documentType?: string;
 }
 
@@ -64,10 +64,10 @@ export default function DocumentRequests() {
         </div>
       )}
 
-      {emailModal.isOpen && (
+      {emailModal.isOpen && emailModal.company && (
         <EmailGenerator
           company={emailModal.company}
-          documentType={emailModal.documentType!}
+          documentType={emailModal.documentType || ''}
           onClose={() => setEmailModal({ isOpen: false })}
         />
       )}

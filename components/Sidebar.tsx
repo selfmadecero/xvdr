@@ -146,17 +146,28 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Bottom Menu */}
       <div className="px-3 py-4 border-t border-white/[0.05] space-y-1">
-        {bottomMenuItems.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            onClick={onClose}
-            className="flex items-center px-3 py-2.5 rounded-lg text-white/60 hover:text-white hover:bg-white/[0.05] transition-all group"
-          >
-            <item.icon className="w-5 h-5 mr-3 transition-colors" />
-            <span className="text-sm font-medium">{item.name}</span>
-          </Link>
-        ))}
+        {bottomMenuItems.map((item) => {
+          const isActive = pathname.startsWith(item.href) && item.href !== '/';
+
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={onClose}
+              className={`flex items-center px-3 py-2.5 rounded-lg transition-all ${
+                isActive
+                  ? 'bg-white/10 text-white'
+                  : 'text-white/60 hover:text-white hover:bg-white/[0.05]'
+              }`}
+            >
+              <item.icon className="w-5 h-5 mr-3 transition-colors" />
+              <span className="text-sm font-medium">{item.name}</span>
+              {isActive && (
+                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300" />
+              )}
+            </Link>
+          );
+        })}
       </div>
 
       {/* User Profile */}

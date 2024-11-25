@@ -257,7 +257,7 @@ export default function Home() {
                 className="backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] rounded-2xl p-8"
               >
                 <p className="text-lg text-white/80 mb-6">
-                  "{testimonial.quote}"
+                  &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <div>
                   <p className="font-semibold text-white">

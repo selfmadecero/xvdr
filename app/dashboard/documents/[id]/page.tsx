@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useParams } from 'next/navigation';
 import {
   DocumentIcon,
   ArrowDownTrayIcon,
@@ -59,8 +58,9 @@ const documentDetails = {
 
 type DocumentStatus = 'review' | 'approved' | 'rejected' | 'pending';
 
-export default function DocumentDetail() {
-  const params = useParams();
+export default function Page({ params }: { params: { id: string } }) {
+  const { id } = params;
+  console.log('Document ID:', id);
   const [showVersionHistory, setShowVersionHistory] = useState(false);
   const [currentStatus, setCurrentStatus] = useState<DocumentStatus>(
     documentDetails.status as DocumentStatus

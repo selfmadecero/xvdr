@@ -5,7 +5,6 @@ import { usePortfolio } from '@/lib/hooks/usePortfolio';
 import Link from 'next/link';
 import {
   MagnifyingGlassIcon,
-  FunnelIcon,
   ArrowUpTrayIcon,
   CheckCircleIcon,
   ExclamationCircleIcon,
@@ -14,19 +13,38 @@ import {
   ShieldCheckIcon,
   EnvelopeIcon,
 } from '@heroicons/react/24/outline';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 type DocumentStatus = 'all' | 'complete' | 'pending' | 'missing';
 type DocumentType = 'all' | 'contract' | 'financial' | 'legal' | 'operational';
+
+// Document 인터페이스 정의
+interface Document {
+  id: string;
+  companyName: string;
+  type: string;
+  status: string;
+  lastUpdated: Date;
+}
+
+// Portfolio 인터페이스 정의
+interface Portfolio {
+  id: string;
+  name: string;
+  documentStatus: Record<string, string>;
+  lastUpdated: Date;
+}
 
 export default function Documents() {
   const { portfolios, loading } = usePortfolio();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<DocumentStatus>('all');
   const [typeFilter, setTypeFilter] = useState<DocumentType>('all');
-  const [showUploadModal, setShowUploadModal] = useState(false);
+
+  if (loading) return <LoadingSpinner />;
 
   // 모든 문서 목록 생성
-  const allDocuments = portfolios.flatMap((company) =>
+  const allDocuments = portfolios.flatMap((company: Portfolio) =>
     Object.entries(company.documentStatus).map(([type, status]) => ({
       id: `${company.id}-${type}`,
       companyName: company.name,
@@ -37,7 +55,7 @@ export default function Documents() {
   );
 
   // 필터링된 문서 목록
-  const filteredDocuments = allDocuments.filter((doc) => {
+  const filteredDocuments = allDocuments.filter((doc: Document) => {
     const matchesSearch =
       doc.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       doc.type.toLowerCase().includes(searchTerm.toLowerCase());

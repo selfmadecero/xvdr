@@ -2,12 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import {
-  ShieldCheckIcon,
-  UserGroupIcon,
-  CheckIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 // 권한 그룹 정의
 const permissionGroups = {
@@ -87,10 +82,22 @@ const employeesData = [
   },
 ];
 
+interface CustomPermissions {
+  canManageUsers: boolean;
+  canManageDocuments: boolean;
+  canViewAnalytics: boolean;
+  canEditPortfolio: boolean;
+  canManageSettings: boolean;
+}
+
 interface EditPermissionsModalProps {
   employee: (typeof employeesData)[0];
   onClose: () => void;
-  onSave: (employeeId: string, group: string, customPermissions: any) => void;
+  onSave: (
+    employeeId: string,
+    group: string,
+    customPermissions: CustomPermissions | null
+  ) => void;
 }
 
 function EditPermissionsModal({
@@ -244,7 +251,7 @@ export default function Permissions() {
   const handleSavePermissions = (
     employeeId: string,
     group: string,
-    customPermissions: any
+    customPermissions: CustomPermissions | null
   ) => {
     // 실제 구현에서는 여기서 권한을 저장합니다
     console.log('권한 저장:', { employeeId, group, customPermissions });

@@ -620,6 +620,23 @@ function EditCompanyModal({ company, onClose, onSave }: EditCompanyModalProps) {
 }
 
 export default function Settings() {
+  const [companyData, setCompanyData] = useState<CompanyInfo>({
+    name: 'A 투자사',
+    email: 'contact@avc.com',
+    plan: 'Enterprise',
+    employeeCount: 25,
+    subscription: {
+      startDate: '2024-01-01',
+      endDate: '2024-12-31',
+      status: 'active',
+    },
+    settings: {
+      twoFactorAuth: true,
+      emailNotifications: true,
+      autoBackup: true,
+    },
+  });
+
   const [activeTab, setActiveTab] = useState<
     'general' | 'team' | 'notifications' | 'security'
   >('general');
@@ -1175,7 +1192,7 @@ export default function Settings() {
               </div>
             </div>
 
-            {/* 로그인 기록 */}
+            {/* 로그�� 기록 */}
             <div className="bg-white/[0.02] backdrop-blur-xl border border-white/[0.05] rounded-2xl p-6">
               <div className="flex items-center space-x-3 mb-6">
                 <ComputerDesktopIcon className="w-6 h-6 text-blue-400" />

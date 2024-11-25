@@ -286,7 +286,10 @@ export default function PerformanceNotifications() {
                 <input
                   type="checkbox"
                   checked={reminder.isCompleted}
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    console.log('Checkbox changed:', e.target.checked);
+                    // TODO: 체크박스 상태 업데이트 로직 추가
+                  }}
                   className="rounded border-white/20 bg-white/5 text-blue-500 focus:ring-blue-500/40"
                 />
                 <div>

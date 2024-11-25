@@ -3,12 +3,12 @@
 import React from 'react';
 import { usePortfolio } from '@/lib/hooks/usePortfolio';
 import {
-  BanknotesIcon,
+  // BanknotesIcon,
+  // ChartBarIcon,
+  // EnvelopeIcon,
+  // ArrowTrendingUpIcon 제거
   BuildingOfficeIcon,
-  ChartBarIcon,
   DocumentIcon,
-  EnvelopeIcon,
-  ArrowTrendingUpIcon,
   ClockIcon,
   CheckCircleIcon,
   ExclamationCircleIcon,
