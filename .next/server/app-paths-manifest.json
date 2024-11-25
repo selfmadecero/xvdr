@@ -1,0 +1,6 @@
+{
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/settings/page": "app/dashboard/settings/page.js",
+  "/dashboard/performance/notifications/page": "app/dashboard/performance/notifications/page.js",
+  "/dashboard/performance/goals/page": "app/dashboard/performance/goals/page.js"
+}
